@@ -19,9 +19,19 @@ objectStream.fromArray([1, 2, 3]).pipe(...);
 
 Pass an empty array or anything falsy to create an empty stream.
 
+#### Collecting elements into an array
+
+```js
+var objectStream = require('object-stream');
+objectStream.fromArray([1, 2, 3])
+  .pipe(objectStream.toArray(function (err, array) {
+    /* array contains all items emitted from readable streams */
+  }));
+```
+
 #### Mapping objects through a transform stream
 
-##### Synchronously (iterator has only one argument)
+Synchronously (iterator has only one argument):
 
 ```js
 var objectStream = require('object-stream');
@@ -29,7 +39,8 @@ var objectStream = require('object-stream');
 objectStream.fromArray([1, 2, 3])
   .pipe(objectStream.map(function (value) {
     return value * 2;
-  })).pipe(...);
+  }))
+  .pipe(...);
 
 // asynchronous
 objectStream.fromArray([1, 2, 3])
@@ -37,10 +48,11 @@ objectStream.fromArray([1, 2, 3])
     setTimeout(function () {
       callback(null, value * 2);
     }, 100);
-  })).pipe(...);
+  }))
+  .pipe(...);
 ```
 
-##### Asynchronously (iterator has two arguments: value and callback)
+Asynchronously (iterator has two arguments: value and callback):
 
 ```js
 var objectStream = require('object-stream');
@@ -50,12 +62,13 @@ objectStream.fromArray([1, 2, 3])
     setTimeout(function () {
       callback(null, value * 2);
     }, 100);
-  })).pipe(...);
+  }))
+  .pipe(...);
 ```
 
-#### Saving objects through a writable stream (or any other write-like action).
+#### Saving objects through a writable stream (or any other write-like action)
 
-##### Synchronously (iterator has only one argument)
+Synchronously (iterator has only one argument):
 
 ```js
 var objectStream = require('object-stream');
@@ -67,7 +80,7 @@ function save(value) {
 objectStream.fromArray([1, 2, 3]).pipe(objectStream.save(save));
 ```
 
-##### Asynchronously (iterator has two arguments: value and callback)
+Asynchronously (iterator has two arguments: value and callback):
 
 ```js
 var objectStream = require('object-stream');
