@@ -2,13 +2,11 @@ var stream = require('stream');
 
 exports.fromArray = function (array) {
   var readable = new stream.Readable({ objectMode: true });
-  var index = -1;
   readable._read = function () {
-    if (array && index < array.length) {
-      readable.push(array[++index]);
-    } else {
-      readable.push(null);
+    for (var index = 0; index < array.length; index += 1) {
+      readable.push(array[index]);
     }
+    readable.push(null);
   };
   return readable;
 };
