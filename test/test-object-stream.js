@@ -12,6 +12,12 @@ describe('objectStream.fromArray(array)', function () {
       done();
     }));
   });
+  it('should handle empty arrays', function(done) {
+    os.fromArray([]).pipe(os.toArray(function (err, array) {
+      array.should.eql([]);
+      done();
+    }));
+  });
 });
 
 describe('objectStream.map(iterator)', function () {
