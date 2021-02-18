@@ -1,6 +1,7 @@
 {
   "name": "object-stream",
   "version": "0.0.1",
+  "license": "MIT",
   "author": {
     "name": "Nicolas Mercier"
   },
@@ -9,7 +10,7 @@
     "stream",
     "streams2"
   ],
-  "engines" : {
+  "engines": {
     "node": ">=0.10"
   },
   "scripts": {
